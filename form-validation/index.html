@@ -1,0 +1,107 @@
+<html ng-app="angular-validator-demo">
+<head>
+    <title>Angular JS Form validation examples</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+</head>
+
+<body ng-controller="MyCtrl">
+    <div class="container">
+        <form angular-validator-submit="submitMyForm()" name="myForm" class="form-horizontal" novalidate angular-validator>
+           
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Custom validation Function</label>
+                <div class="col-sm-10">
+                    <input  type = "text"
+                            name = "firstName"
+                            class = "form-control"
+							value="a"
+                            ng-model = "form.firstName"
+                            validator = "myCustomValidator(form.firstName)"
+                            required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-10">
+                    <input  type = "email"
+                            name = "emailAddress"
+                            class = "form-control"
+							value="mahesheu@gmail.com"
+                            ng-model = "form.emailAddress"
+                            invalid-message="'Thats not a real email address'"
+                            required-message="'this is required'"
+                            required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Regex</label>
+                <div class="col-sm-10">
+                    <input  type = "text"
+                            name = "regex"
+                            class = "form-control"
+							value="regex"
+                            ng-model = "form.regex"
+                            ng-pattern="/regex/"
+                            invalid-message="'u must enter the word `regex`'"
+                            required-message="'! This field is required..'"
+                            required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Custom message Function</label>
+                <div class="col-sm-10">
+                    <input  type = "text"
+                            name = "myField"
+                            class = "form-control"
+                            ng-model = "form.myField"
+							value="rainbow";
+                            validator = "anotherCustomValidator(form.myField) === true"
+                            invalid-message = "anotherCustomValidator(form.myField)"
+                            required>
+                </div>
+            </div>
+            
+
+            <hr>
+            <p>Password validation and password matching example</p>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Password</label>
+                <div class="col-sm-10">
+                    <input  type = "password"
+                            name = "password"
+                            class = "form-control"
+							value="abcdefG1"
+                            ng-model = "form.password"
+                            validator = "passwordValidator(form.password) === true"
+                            invalid-message = "passwordValidator(form.password)"
+                            required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Confirm Password</label>
+                <div class="col-sm-10">
+                    <input  type = "password"
+                            name = "confirmPassword"
+							value="abcdefG1"
+                            class = "form-control"
+                            ng-model = "form.confirmPassword"
+                            validator = "form.password === form.confirmPassword"
+                            invalid-message = "'Passwords do not match!'"
+                            required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+
+ 
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script> 
+		<script src="js/angular-validator.js"></script> 	
+        <script src="app.js" ></script>
+    
+</body>
+</html>
